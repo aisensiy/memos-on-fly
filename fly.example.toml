@@ -6,7 +6,7 @@ kill_timeout = 5
 processes = []
 
 [build]
-  image = "hu3rror/memos-fly:latest"                                # Do not change unless you build your own image
+  dockerfile = "Dockerfile"
 
 [env]
   DB_PATH = "/var/opt/memos/memos_prod.db"                          # do not change
