@@ -34,14 +34,7 @@ You can take [fly.example.toml](fly.example.toml) in this repository as a refere
 
 ### Details of manual modifications
 
-#### 1. Add an `build` section.
-
-  ```toml
-  [build]
-    image = "hu3rror/memos-fly:latest"
-  ```
-
-#### 2. Add an `env` section.
+#### 1. Add an `env` section.
 
   ```toml
   [env]
@@ -51,7 +44,7 @@ You can take [fly.example.toml](fly.example.toml) in this repository as a refere
     LITESTREAM_REPLICA_PATH = "memos_prod.db"  # keep the default or change to whatever path you want
   ```
 
-#### 3. Configure litestream backups
+#### 2. Configure litestream backups
 
   > ℹ️ If you want to use another storage provider, check litestream's ["Replica Guides"](https://litestream.io/guides/) section and adjust the config as needed.
 
@@ -62,7 +55,7 @@ You can take [fly.example.toml](fly.example.toml) in this repository as a refere
       flyctl secrets set LITESTREAM_ACCESS_KEY_ID="<keyId>" LITESTREAM_SECRET_ACCESS_KEY="<applicationKey>"
       ```
 
-#### 4. Add a persistent volume
+#### 3. Add a persistent volume
 
   1. Create a [persistent volume](https://fly.io/docs/reference/volumes/). Fly's free tier includes `3GB` of storage across your VMs. Since `memos` is very light on storage, a `1GB` volume will be more than enough for most use cases. It's possible to change volume size later. A how-to can be found in the _"scale persistent volume"_ section below.
       ```sh
@@ -80,14 +73,14 @@ You can take [fly.example.toml](fly.example.toml) in this repository as a refere
         destination="/var/opt/memos"
       ```
 
-#### 5. Change `internal_port` in `[[services]]`
+#### 4. Change `internal_port` in `[[services]]`
 
 ```toml
 [[services]]
   internal_port = 5230
 ```
 
-#### 6. Deploy to fly.io
+#### 5. Deploy to fly.io
 
   ```sh
   flyctl deploy
